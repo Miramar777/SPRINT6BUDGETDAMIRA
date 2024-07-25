@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BudgetService } from '../services/budget.service';
 import { Budget } from '../models/budget';
-import { Signal, signal } from '@angular/core';
+import { Signal, signal, computed } from '@angular/core';
 
 @Component({
   selector: 'app-budgets-list',
@@ -13,86 +13,64 @@ import { Signal, signal } from '@angular/core';
   styleUrls: ['./budgets-list.component.scss']
 })
 export class BudgetsListComponent implements OnInit {
-  @Input() isButtonClicked: boolean = false; 
-  budgets: Signal<Budget[]> = signal([]);
-  filteredBudgets: Signal<Budget[]> = signal([]);
-  searchTerm: string = '';
-  newBudget: Budget = {
-    clientName: '',
-    phone: '',
-    email: '',
-    seo: false,
-    ads: false,
-    web: false,
-    webDetails: {
-      pages: 0,
-      languages: 0
-    },
-    date: new Date(),
-    totalCost: 0
-  };
+  @Input() isButtonClicked: boolean = false;
 
-  constructor(private budgetService: BudgetService) {}
+  budgets: Signal<Budget[]> = signal([]);
+  filteredBudgets: Signal<Budget[]>;
+  searchTerm: string = '';
+  sortCriteria: string = 'date'; // Default sort criteria
+
+  constructor(private budgetService: BudgetService) {
+    this.filteredBudgets = computed(() => this.filterAndSortBudgets());
+  }
 
   ngOnInit() {
-    // Initialize budgets and filteredBudgets
     this.budgets = this.budgetService.getBudgets();
-    this.filteredBudgets = this.budgets;
-
-    // Perform initial filtering
-    this.filterBudgets();
   }
 
   onSearchChange() {
-    this.filterBudgets();
+    // Trigger recomputation of filteredBudgets
+    this.filteredBudgets = computed(() => this.filterAndSortBudgets());
   }
 
-  private filterBudgets() {
+  private filterAndSortBudgets(): Budget[] {
     const term = this.searchTerm.toLowerCase();
-    const filtered = this.budgets().filter(budget =>
+    let filtered = this.budgets().filter(budget =>
       budget.clientName.toLowerCase().includes(term)
     );
-    this.filteredBudgets = signal(filtered);
+
+    // Apply sorting
+    switch (this.sortCriteria) {
+      case 'date':
+        filtered.sort((a, b) => a.date.getTime() - b.date.getTime());
+        break;
+      case 'cost':
+        filtered.sort((a, b) => a.totalCost - b.totalCost);
+        break;
+      case 'name':
+        filtered.sort((a, b) => a.clientName.localeCompare(b.clientName));
+        break;
+    }
+
+    return filtered;
   }
 
-  addBudget() {
-    if (this.newBudget.clientName) {
-      this.budgetService.addBudget(this.newBudget);
-      this.newBudget = {
-        clientName: '',
-        phone: '',
-        email: '',
-        seo: false,
-        ads: false,
-        web: false,
-        webDetails: {
-          pages: 0,
-          languages: 0
-        },
-        date: new Date(),
-        totalCost: 0
-      };
-      this.searchTerm = ''; // Optionally clear search term
-      this.filterBudgets(); // Refresh the list to include new budget
-    }
+  sortByDate() {
+    this.sortCriteria = 'date';
+    this.filteredBudgets = computed(() => this.filterAndSortBudgets());
+  }
+
+  sortByCost() {
+    this.sortCriteria = 'cost';
+    this.filteredBudgets = computed(() => this.filterAndSortBudgets());
+  }
+
+  sortByName() {
+    this.sortCriteria = 'name';
+    this.filteredBudgets = computed(() => this.filterAndSortBudgets());
   }
 
   trackByDate(index: number, budget: Budget): number {
     return budget.date.getTime();
-  }
-
-  sortByDate() {
-    const sorted = [...this.budgets()].sort((a, b) => a.date.getTime() - b.date.getTime());
-    this.filteredBudgets = signal(sorted);
-  }
-
-  sortByCost() {
-    const sorted = [...this.budgets()].sort((a, b) => a.totalCost - b.totalCost);
-    this.filteredBudgets = signal(sorted);
-  }
-
-  sortByName() {
-    const sorted = [...this.budgets()].sort((a, b) => a.clientName.localeCompare(b.clientName));
-    this.filteredBudgets = signal(sorted);
   }
 }
