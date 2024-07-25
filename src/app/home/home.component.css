@@ -1,0 +1,61 @@
+.container {
+  display: flex;
+  width: 80%;
+  padding: 1rem;
+  margin: 2rem auto 0 auto;
+}
+
+.formulario .card {
+  display: flex;
+  width: 80%;
+  padding: 1rem;
+  margin: 2rem auto 0 auto;
+  transition: border-color 0.3s;
+}
+.formulario .card:hover {
+  border-color: rgb(5, 136, 59);
+}
+.formulario .card .card-body .card-title {
+  font-size: 1.25rem;
+}
+.formulario .card .card-body p {
+  margin-bottom: 0;
+}
+.formulario .card .card-body h2, .formulario .card .card-body h3 {
+  margin: 0;
+}
+.formulario .card .card-body h2, .formulario .card .card-body h3, .formulario .card .card-body .total-cost-value {
+  font-size: 1.75rem;
+}
+.formulario .total-cost-value {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-left: 0.5rem;
+}
+
+.form-check-input {
+  background-color: none;
+}
+.form-check-input:checked {
+  background-color: rgb(5, 136, 59);
+}
+
+.dashed-line {
+  position: relative;
+  width: 60%;
+  margin: auto;
+  height: 5px;
+  background-color: transparent;
+}
+.dashed-line::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(to right, grey, grey 5px, transparent 5px, transparent 15px);
+  border-radius: 2.5px;
+}
+
+#field {
+  position: absolute;
+}/*# sourceMappingURL=home.component.css.map */

@@ -1,0 +1,38 @@
+.modal-dialog {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  min-height: calc(100% - 1rem);
+}
+
+.modal-content {
+  margin: auto;
+  text-align: center;
+}
+
+.modal-title {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.modal-title {
+  text-align: center;
+  width: 100%;
+}
+
+.modal-content .modal-header {
+  border-bottom: none;
+}
+.modal-content .modal-header.no-border {
+  border-bottom: none;
+}
+
+.modal-header .btn-close {
+  display: none;
+}
+
+.custom-modal {
+  border-radius: 20px;
+}/*# sourceMappingURL=modal.component.css.map */
