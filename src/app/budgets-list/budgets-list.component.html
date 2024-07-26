@@ -1,51 +1,47 @@
-<div *ngIf="isButtonClicked">
-  <div class="budget-list">
-    <p class="h4 mt-5 mb-5">Pressupostos en curs:</p>
-    <div class="button-group">
-      <button class="btn btn-primary" (click)="sortByDate()">Data</button>
-      <button class="btn btn-primary" (click)="sortByCost()">Import</button>
-      <button class="btn btn-primary" (click)="sortByName()">Nom</button>
-    </div>
+<div class="budget-list">
+  <p class="h4 mt-5 mb-5">Pressupostos en curs:</p>
+  <div class="button-group">
+    <button class="btn" [class.active]="sortCriteria === 'date'" (click)="sortByDate()">Data</button>
+    <button class="btn" [class.active]="sortCriteria === 'cost'" (click)="sortByCost()">Import</button>
+    <button class="btn" [class.active]="sortCriteria === 'name'" (click)="sortByName()">Nom</button>
   </div>
 
-  <div class="d-flex flex-column align-items-center mt-4 mx-auto px-4" style="max-width: 1000px;">
-    @for (budget of filteredBudgets(); track trackByDate($index, budget)) {
-      <div class="card mb-3 shadow-sm rounded hover-shadow budget-card">
-        <div class="card-body mt-4">
-          <div class="client-info">
-            <h5>{{ budget.clientName }}</h5>
-            <p>{{ budget.email }}</p>
-            <p>{{ budget.phone }}</p>
-          </div>
-          <div class="services">
-            <h5>Serveis contractats:</h5>
-            <ul>
-              @if (budget.seo) {
-                <li>SEO</li>
-              }
-              @if (budget.ads) {
-                <li>Ads</li>
-              }
-              @if (budget.web) {
-                <li>Web</li>
-              }
-            </ul>
-            @if (budget.web) {
-              <div class="web-details">
-                <p>Pàgines: {{ budget.webDetails.pages }}</p>
-                <p>Idiomes: {{ budget.webDetails.languages }}</p>
-              </div>
+  @for (budget of filteredBudgets(); track trackByDate($index, budget)) {
+    <div class="card mb-3 shadow budget-card">
+      <div class="card-body mt-4">
+        <div class="client-info">
+          <h5>{{ budget.clientName }}</h5>
+          <p>{{ budget.email }}</p>
+          <p>{{ budget.phone }}</p>
+        </div>
+        <div class="services"> 
+          <h6>Serveis contractats:</h6>
+          <ul>
+            @if (budget.seo) {
+              <li>SEO</li>
             }
-          </div>
-          <div class="total-cost">
-            <h5>Total:</h5>
-            <p>{{ budget.totalCost }}€</p>
-          </div>
-          <div class="budget-date">
-            <p>{{ budget.date | date:'short' }}</p>
-          </div>
+            @if (budget.ads) {
+              <li>Ads</li>
+            }
+            @if (budget.web) {
+              <li>Web</li>
+            }
+          </ul>
+          @if (budget.web) {
+            <div class="web-details">
+              <p>Pàgines: {{ budget.webDetails.pages }}</p>
+              <p>Idiomes: {{ budget.webDetails.languages }}</p>
+            </div>
+          }
+        </div>
+        <div class="total-cost">
+          <h6>Total:</h6>
+          <h5>{{ budget.totalCost }}€</h5>
+        </div>
+        <div class="budget-date">
+          <p>{{ budget.date | date:'short' }}</p>
         </div>
       </div>
-    }
-  </div>
+    </div>
+  }
 </div>

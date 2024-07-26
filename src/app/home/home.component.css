@@ -1,15 +1,18 @@
 .container {
   display: flex;
-  width: 80%;
+  width: 100%;
   padding: 1rem;
   margin: 2rem auto 0 auto;
 }
 
 .formulario .card {
   display: flex;
-  width: 80%;
+  width: 100%;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
   padding: 1rem;
   margin: 2rem auto 0 auto;
+  border-radius: 20px;
   transition: border-color 0.3s;
 }
 .formulario .card:hover {
@@ -25,10 +28,13 @@
   margin: 0;
 }
 .formulario .card .card-body h2, .formulario .card .card-body h3, .formulario .card .card-body .total-cost-value {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
+}
+.formulario .total-cost {
+  text-wrap: nowrap;
 }
 .formulario .total-cost-value {
-  font-size: 1.75rem;
+  font-size: 1.6rem;
   font-weight: bold;
   margin-left: 0.5rem;
 }
@@ -41,19 +47,12 @@
 }
 
 .dashed-line {
-  position: relative;
-  width: 60%;
-  margin: auto;
-  height: 5px;
-  background-color: transparent;
-}
-.dashed-line::after {
-  content: "";
-  display: block;
   width: 100%;
-  height: 100%;
-  background: repeating-linear-gradient(to right, grey, grey 5px, transparent 5px, transparent 15px);
-  border-radius: 2.5px;
+  height: 5px;
+  margin: auto;
+  background-image: linear-gradient(to right, rgb(199, 197, 197) 50%, transparent 50%);
+  background-size: 20px 4px;
+  background-repeat: repeat-x;
 }
 
 #field {

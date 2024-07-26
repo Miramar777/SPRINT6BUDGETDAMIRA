@@ -1,11 +1,9 @@
 <app-welcome></app-welcome>
-
-
 <div class="container-fluid">
-<div class="d-flex flex-column align-items-center mt-4 mx-auto px-4" style="max-width: 1000px;">
-  <form class="formulario w-100" [formGroup]="serviceForm">
-    @for (service of services; track service.name) {
-      <div class="card mb-3 shadow-sm rounded hover-shadow">
+  <div class="d-flex flex-column align-items-center mt-4 mx-auto px-4" style="max-width: 1000px;">
+    <form class="formulario w-100" [formGroup]="serviceForm">
+      @for (service of services; track service.name) {
+      <div class="card mb-3 shadow">
         <div class="card-body d-flex justify-content-between align-items-center">
           <div>
             <h5 class="card-title">{{service.name}}</h5>
@@ -16,11 +14,7 @@
           </div>
           <div>
             <label class="form-check-label">
-              <input type="checkbox"  [formControlName]="service.controlName" class="form-check-input" /> Afegir
-
-              <!-- [formControl] assigns a reference to the FormControl instance you created to the FormControlDirective . 
-              formControlName assigns a string for the forms module to look up the control by name. -->
-
+              <input type="checkbox"  [formControlName]="service.controlName" class="form-check-input" /> Afegir          
             </label>
           </div>
         </div>
@@ -30,25 +24,20 @@
             <app-panel [parentForm]="webForm" />
           </div>
           </div>
-
         }
       </div>
-    }
+       }
 
-
-    <div class=" row justify-content-end mt-3 w-100 pe-4 ">
-      <div class="col-md-5 float-md-end mb-3 ms-md-3 ">
-        <h3 class="me-4 ">Preu pressupostat: {{ totalCost$ | async }} €</h3>
+       <div class="row justify-content-end mt-3">
+        <div class="col-auto">
+          <h5 class="text-nowrap me-2">Preu pressupostat: {{ totalCost$ | async }}€</h5>
+        </div>
       </div>
-    </div>
+    </form>
  
-  </form>
-</div>
 
-
-<div class="d-flex flex-column align-items-center mt-4 mx-auto px-4" style="max-width: 1000px;">
   <form class="formulario w-100" [formGroup]="serviceForm">
-    <div class="card mb-3 shadow-sm rounded hover-shadow">
+    <div class="card mb-3 shadow">
       <div class="card-body">
         <div class="mb-3">
           <h5 class="card-title">Demanar pressupost</h5>
@@ -62,8 +51,6 @@
                      [placeholder]="getPlaceholder(field)" 
                      [formControlName]="field">
               @if (serviceForm.get(field)?.invalid && (serviceForm.get(field)?.dirty || serviceForm.get(field)?.touched)) {
-                <!-- dirty — true, если пользователь заполнил хотя бы одно из полей; -->
-                <!-- touched — true, если одно из полей становилось активным (получало фокус); -->
                 <div class="text-danger">
                   {{ getErrorMessage(field) }}
                 </div>
@@ -71,7 +58,6 @@
             </div>
           }
           <div>
-            <!-- <form [formGroup]="applyForm"></form> type="button" (click)="saveBudget()" class="btn btn-success btn-sm text-nowrap">Sol·licitar pressupost →</form> -->
 
 <button type="button" (click)="saveBudget()" class="btn btn-success btn-sm text-nowrap">Sol·licitar pressupost →</button>
           </div>
@@ -79,16 +65,13 @@
       </div>
     </div>
   </form>
-
-
-
-
-   <div class="dashed-line my-5"></div>
-
-   
-   <app-budgets-list [isButtonClicked]="isButtonClicked"></app-budgets-list>
+ 
+   <div class="dashed-line mt-5 mb-5"></div>
+ 
+   <app-budgets-list></app-budgets-list>
+  
   </div>
-       </div>
+      </div> 
 
 
 

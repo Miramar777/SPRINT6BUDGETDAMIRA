@@ -13,12 +13,10 @@ import { Signal, signal, computed } from '@angular/core';
   styleUrls: ['./budgets-list.component.scss']
 })
 export class BudgetsListComponent implements OnInit {
-  @Input() isButtonClicked: boolean = false;
-
   budgets: Signal<Budget[]> = signal([]);
   filteredBudgets: Signal<Budget[]>;
   searchTerm: string = '';
-  sortCriteria: string = 'date'; // Default sort criteria
+  sortCriteria: 'date' | 'cost' | 'name' = 'date';
 
   constructor(private budgetService: BudgetService) {
     this.filteredBudgets = computed(() => this.filterAndSortBudgets());
@@ -29,7 +27,7 @@ export class BudgetsListComponent implements OnInit {
   }
 
   onSearchChange() {
-    // Trigger recomputation of filteredBudgets
+   
     this.filteredBudgets = computed(() => this.filterAndSortBudgets());
   }
 
@@ -39,7 +37,7 @@ export class BudgetsListComponent implements OnInit {
       budget.clientName.toLowerCase().includes(term)
     );
 
-    // Apply sorting
+   
     switch (this.sortCriteria) {
       case 'date':
         filtered.sort((a, b) => a.date.getTime() - b.date.getTime());
@@ -59,17 +57,14 @@ export class BudgetsListComponent implements OnInit {
     this.sortCriteria = 'date';
     this.filteredBudgets = computed(() => this.filterAndSortBudgets());
   }
-
   sortByCost() {
     this.sortCriteria = 'cost';
     this.filteredBudgets = computed(() => this.filterAndSortBudgets());
   }
-
   sortByName() {
     this.sortCriteria = 'name';
     this.filteredBudgets = computed(() => this.filterAndSortBudgets());
   }
-
   trackByDate(index: number, budget: Budget): number {
     return budget.date.getTime();
   }

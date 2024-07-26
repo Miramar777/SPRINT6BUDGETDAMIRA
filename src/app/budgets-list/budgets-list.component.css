@@ -1,99 +1,82 @@
-.container-lg {
-  display: flex;
-  width: 80%;
-  padding: 1rem;
-  margin: auto;
-  max-width: 1000px;
-}
-
-.budget-list {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.button-group {
+.budget-list .button-group {
   display: flex;
   gap: 10px;
 }
-.button-group .btn {
-  padding: 0.5rem 1rem;
+.budget-list .button-group .btn {
+  background-color: transparent;
   border: none;
-  border-radius: 4px;
-  background-color: #007bff;
-  color: #fff;
+  color: inherit;
+  padding: 10px 15px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: font-weight 0.3s ease;
 }
-.button-group .btn:hover {
-  background-color: #0056b3;
+.budget-list .button-group .btn:hover {
+  text-decoration: underline;
 }
-
-.budget-card .card-body {
+.budget-list .button-group .btn.active {
+  font-weight: bold;
+}
+.budget-list .card {
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  padding: 1rem;
+  margin: 2rem auto 0 auto;
+  border-radius: 20px;
+  transition: border-color 0.3s;
+}
+.budget-list .card:hover {
+  border-color: rgb(5, 136, 59);
+}
+.budget-list .card .card-body {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: start;
   position: relative;
   padding: 1rem;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  width: 100%;
+  gap: 1rem;
 }
-.budget-card .card-body .client-info, .budget-card .card-body .services, .budget-card .card-body .total-cost {
+.budget-list .card .card-body .card-title {
+  font-size: 1.25rem;
+}
+.budget-list .card .card-body p {
+  margin-bottom: 0;
+  color: darkgrey;
+}
+
+.services, .total-cost {
   flex: 1;
   min-width: 200px;
   margin-right: 10px;
 }
-.budget-card .card-body .client-info:last-child, .budget-card .card-body .services:last-child, .budget-card .card-body .total-cost:last-child {
+.services:last-child, .total-cost:last-child {
   margin-right: 0;
 }
-.budget-card .card-body .client-info {
-  max-width: 300px;
-}
-.budget-card .card-body .client-info p {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.budget-card .card-body .services {
-  max-width: 250px;
-}
-.budget-card .card-body .services .web-details {
-  margin-top: 10px;
-}
-.budget-card .card-body .total-cost {
+
+.total-cost {
   max-width: 100px;
 }
-.budget-card .card-body .budget-date {
-  max-width: 200px;
-  text-align: right;
-  position: absolute;
-  bottom: 10px;
-  right: 20px;
+.total-cost h6 {
+  color: darkgrey;
 }
 
-.card {
-  display: flex;
-  width: calc(85% + 20px);
-  padding: 1rem;
-  margin: 2rem auto 0 auto;
-  transition: border-color 0.3s;
+.client-info {
+  max-width: 300px;
 }
-.card:hover {
-  border-color: rgb(5, 136, 59);
+.client-info p {
+  white-space: nowrap;
 }
-.card .card-body {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  padding: 1rem;
+
+.budget-date {
+  max-width: 200px;
+  text-align: right;
   position: relative;
-}
-.card .card-body .card-title {
-  font-size: 1.25rem;
-}
-.card .card-body p {
-  margin-bottom: 0;
-}
-.card .card-body h2, .card .card-body h3, .card .card-body h4, .card .card-body h5, .card .card-body .total-cost-value {
-  font-size: 1.75rem;
+  bottom: 10px;
+  right: 20px;
 }/*# sourceMappingURL=budgets-list.component.css.map */

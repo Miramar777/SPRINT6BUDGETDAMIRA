@@ -1,26 +1,27 @@
 .container {
   display: flex;
-  width: 80%;
+  width: 100%;
   padding: 1rem;
   margin: 2rem auto 0 auto;
- 
 }
 
 
 .formulario {
     .card {
         display: flex;
-        width: 80%;
+        width: 100%;
+        min-width: fit-content;
         padding: 1rem;
         margin: 2rem auto 0 auto;
-       
-      transition: border-color 0.3s;
+        border-radius: 20px;
+        transition: border-color 0.3s;
   
       &:hover {
         border-color: rgb(5, 136, 59);
       }
   
       .card-body {
+        
         .card-title {
           font-size: 1.25rem;
         }
@@ -34,25 +35,21 @@
         }
   
         h2, h3, .total-cost-value {
-          font-size: 1.75rem;
+          font-size: 1.5rem;
          
         }
       }
-
-
-
     }
   
     .total-cost {
-     
+      text-wrap:nowrap;
       &-value {
-        font-size: 1.75rem;
+        font-size: 1.6rem;
         font-weight: bold;
         margin-left: 0.5rem;
-      }
         
+      }
           }
-
     }
 
     .form-check-input {
@@ -64,28 +61,19 @@
 
 
     .dashed-line {
-      position: relative;
-      width: 60%;
+      width: 100%;
+      height: 5px;
       margin: auto;
-      height: 5px; // Adjust this to match the height of your line
-      background-color: transparent; // Ensure the background is transparent
-    
-      &::after {
-        content: "";
-        display: block;
-        width: 100%;
-        height: 100%; // Match the height of the dashed line
-        background: 
-          repeating-linear-gradient(
-            to right,
-            grey,
-            grey 5px,
-            transparent 5px,
-            transparent 15px
-          );
-        border-radius: 2.5px; // Adjust this to control the roundness of the corners
+      background: {
+        image: linear-gradient(to right, rgb(199, 197, 197) 50%, transparent 50%);
+        size: 20px 4px;
+        repeat: repeat-x;
+        
       }
     }
+        
+      
+    
     
     #field {
       position: absolute;
