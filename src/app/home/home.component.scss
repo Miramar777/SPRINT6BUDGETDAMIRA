@@ -5,7 +5,6 @@
   margin: 2rem auto 0 auto;
 }
 
-
 .formulario {
     .card {
         display: flex;
@@ -15,13 +14,11 @@
         margin: 2rem auto 0 auto;
         border-radius: 20px;
         transition: border-color 0.3s;
-  
       &:hover {
         border-color: rgb(5, 136, 59);
       }
-  
-      .card-body {
-        
+
+      .card-body {  
         .card-title {
           font-size: 1.25rem;
         }
@@ -33,33 +30,27 @@
         h2, h3 {
           margin: 0;
         }
-  
         h2, h3, .total-cost-value {
           font-size: 1.5rem;
          
         }
       }
     }
-  
     .total-cost {
       text-wrap:nowrap;
       &-value {
         font-size: 1.6rem;
         font-weight: bold;
         margin-left: 0.5rem;
-        
       }
           }
     }
-
     .form-check-input {
       background-color: none;
       &:checked {
       background-color: rgb(5, 136, 59);
       }
     }
-
-
     .dashed-line {
       width: 100%;
       height: 5px;
@@ -68,7 +59,6 @@
         image: linear-gradient(to right, rgb(199, 197, 197) 50%, transparent 50%);
         size: 20px 4px;
         repeat: repeat-x;
-        
       }
     }
         

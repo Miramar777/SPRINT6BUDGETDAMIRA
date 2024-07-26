@@ -1,27 +1,44 @@
-# SPRINT6BUDGETDAMIRA
+Budget Calculator App
+This project is an Angular application for calculating and managing web service budgets. It allows users to select services, customize web development options, and generate, store, and manage multiple budget estimates.
+Features
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.5.
+Select from three main services: SEO, Advertising, and Web Development
+Customize web development options (number of pages and languages)
+Real-time budget calculation
+Store and manage multiple budget estimates
+Sort and search functionality for saved budgets
+Shareable URL for each budget configuration
 
-## Development server
+Getting Started
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Clone the repository:
+Copygit clone https://github.com/Miramar777/SPRINT6BUDGETDAMIRA.git
 
-## Code scaffolding
+Navigate to the project directory:
+Copycd SPRINT6BUDGETDAMIRA
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Install dependencies:
+Copynpm install
 
-## Build
+Run the development server:
+Copyng serve
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Open your browser and visit http://localhost:4200
 
-## Running unit tests
+Technologies Used
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Angular
+TypeScript
+RxJS
+Bootstrap 5
+SASS
 
-## Running end-to-end tests
+Project Structure
+The project follows a component-based architecture with services for managing the business logic. Key components include:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Home Component: Main interface for budget selection
+Panel Component: Customization options for web development
+BudgetsList Component: Displays and manages saved budgets
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Contributing
+This project is part of a learning exercise. While contributions are not actively sought, feedback and suggestions are welcome.
