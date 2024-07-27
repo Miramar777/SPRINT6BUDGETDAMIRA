@@ -1,10 +1,21 @@
+<div class="container">
 <div class="budget-list">
-  <p class="h4 mt-5 mb-5">Pressupostos en curs:</p>
-  <div class="button-group">
-    <button class="btn" [class.active]="sortCriteria === 'date'" (click)="sortByDate()">Data</button>
-    <button class="btn" [class.active]="sortCriteria === 'cost'" (click)="sortByCost()">Import</button>
-    <button class="btn" [class.active]="sortCriteria === 'name'" (click)="sortByName()">Nom</button>
-  </div>
+  <div class="row">
+    <div class="col-12">
+        <p class="h4 mt-5 mb-5">Pressupostos en curs:</p>
+     </div>
+   </div>
+
+  <div class="row">
+    <div class="button-group justify-content-end">
+    
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+     <button class="btn" [class.active]="sortCriteria === 'date'" (click)="sortByDate()">Data</button>
+     <button class="btn" [class.active]="sortCriteria === 'cost'" (click)="sortByCost()">Import</button>
+     <button class="btn" [class.active]="sortCriteria === 'name'" (click)="sortByName()">Nom</button>
+    </div>
+ </div>
+
 
   @for (budget of filteredBudgets(); track trackByDate($index, budget)) {
     <div class="card mb-3 shadow budget-card">
@@ -44,4 +55,5 @@
       </div>
     </div>
   }
+</div>
 </div>

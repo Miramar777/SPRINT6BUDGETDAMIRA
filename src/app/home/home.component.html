@@ -1,6 +1,20 @@
+<div class="container-fluid" style="max-width: 1000px;">
+    <div class="row">
+      <div class="col-12 justify-content-center ">
+      <header class="d-flex flex-wrap justify-content-center py-3 mb-4" >
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+          <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 63.64 65.62"><defs><style>.cls-1{fill:#ea7913;}.cls-2{fill:#e8152e;}.cls-3{fill:#681305;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="cls-1" x="11.66" y="-2.61" width="11.34" height="65.95" rx="5.67" transform="translate(-11.3 10.3) rotate(-25.27)"/><rect class="cls-2" x="46.44" y="8.02" width="11.34" height="38.81" rx="5.67" transform="translate(-6.72 24.86) rotate(-25.27)"/><rect class="cls-3" x="38.59" y="30.21" width="11.34" height="36.61" rx="5.67" transform="translate(-16.48 23.53) rotate(-25.27)"/></g></g></svg>
+          <span class="fs-4 ms-2">Frontender.itacademy</span>
+        </a>
+      </header>
+     </div>
+    </div>
+
 <app-welcome></app-welcome>
-<div class="container-fluid">
+
   <div class="d-flex flex-column align-items-center mt-4 mx-auto px-4" style="max-width: 1000px;">
+    
     <form class="formulario w-100" [formGroup]="serviceForm">
       @for (service of services; track service.name) {
       <div class="card mb-3 shadow">

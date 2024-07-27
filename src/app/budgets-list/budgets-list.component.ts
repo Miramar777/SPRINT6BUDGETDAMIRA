@@ -8,7 +8,7 @@ import { Signal, signal, computed } from '@angular/core';
 @Component({
   selector: 'app-budgets-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, ],
   templateUrl: './budgets-list.component.html',
   styleUrls: ['./budgets-list.component.scss']
 })

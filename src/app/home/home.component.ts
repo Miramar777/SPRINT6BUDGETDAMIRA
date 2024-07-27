@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   webForm: FormGroup;
   totalCost$: Observable<number>;
 submittedBudget: any;
-isButtonClicked: boolean = false;  // New property
+
 
   @Input() item = ''; 
   services: Service[] = [
@@ -94,9 +94,8 @@ isButtonClicked: boolean = false;  // New property
         date: new Date()
       };
 
-      // console.log(budget);
+      
       this.budgetService.addBudget(budget);
-      this.isButtonClicked = true;
       this.serviceForm.reset({
         clientName: '',
         phone: '',
@@ -110,7 +109,6 @@ isButtonClicked: boolean = false;  // New property
         languages: 1
       });
     } else {
-      // Mark all fields as touched to show errors
       Object.values(this.serviceForm.controls).forEach(control => control.markAsTouched());
       Object.values(this.webForm.controls).forEach(control => control.markAsTouched());
     }
