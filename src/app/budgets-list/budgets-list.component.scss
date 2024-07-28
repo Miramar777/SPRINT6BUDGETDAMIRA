@@ -1,3 +1,7 @@
+.container {
+  padding-bottom: 20px;
+}
+
 .budget-list {
   .button-group {
     display: flex;
@@ -24,6 +28,7 @@
     max-width: 1000px;
     min-width: fit-content;
     padding: 1rem;
+   
     margin: 2rem auto 0 auto;
     border-radius: 20px;
     transition: border-color 0.3s;
@@ -65,7 +70,7 @@
     color:  darkgrey;
     }
   }
-  
+
   .client-info {
     max-width: 300px;
     p {
