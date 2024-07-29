@@ -17,9 +17,21 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  serviceForm!: FormGroup;
-  webForm!: FormGroup;
-  totalCost$!: Observable<number>;
+  serviceForm: FormGroup = new FormGroup({
+    clientName: new FormControl('', [Validators.required]),
+    phone: new FormControl('', [Validators.required, Validators.pattern(/^\d{9}$/)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    seo: new FormControl(false),
+    ads: new FormControl(false),
+    web: new FormControl(false)
+  });
+
+  webForm: FormGroup = new FormGroup({
+    pages: new FormControl(1, [Validators.required, Validators.min(1)]),
+    languages: new FormControl(1, [Validators.required, Validators.min(1)])
+  });
+
+  totalCost$: Observable<number>;
   submittedBudget: any;
 
   @Input() item = ''; 
@@ -34,8 +46,7 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.initializeForms();
-    this.setupTotalCostObservable();
+    this.totalCost$ = this.setupTotalCostObservable();
   }
 
   ngOnInit(): void {
@@ -47,24 +58,8 @@ export class HomeComponent implements OnInit {
     this.webForm.valueChanges.subscribe(() => this.updateUrl());
   }
 
-  private initializeForms(): void {
-    this.serviceForm = new FormGroup({
-      clientName: new FormControl('', [Validators.required]),
-      phone: new FormControl('', [Validators.required, Validators.pattern(/^\d{9}$/)]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      seo: new FormControl(false),
-      ads: new FormControl(false),
-      web: new FormControl(false)
-    });
-
-    this.webForm = new FormGroup({
-      pages: new FormControl(1, [Validators.required, Validators.min(1)]),
-      languages: new FormControl(1, [Validators.required, Validators.min(1)])
-    });
-  }
-
-  private setupTotalCostObservable(): void {
-    this.totalCost$ = combineLatest([
+  private setupTotalCostObservable(): Observable<number> {
+    return combineLatest([
       this.serviceForm.valueChanges.pipe(startWith(this.serviceForm.value)),
       this.webForm.valueChanges.pipe(startWith(this.webForm.value))
     ]).pipe(
@@ -95,7 +90,7 @@ export class HomeComponent implements OnInit {
       email: this.serviceForm.get('email')?.value
     };
   
-   
+
     Object.keys(queryParams).forEach(key => 
       (queryParams[key] === undefined || queryParams[key] === null || queryParams[key] === '') && delete queryParams[key]
     );
@@ -107,7 +102,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  private resetForms(): void {
+  resetForms(): void {
     this.serviceForm.reset({
       clientName: '',
       phone: '',
@@ -156,13 +151,13 @@ export class HomeComponent implements OnInit {
       
       this.budgetService.addBudget(budget);
       
-  
+    
       this.updateUrl();
       
   
       this.submittedBudget = budget;
       
-
+    
     } else {
       Object.values(this.serviceForm.controls).forEach(control => control.markAsTouched());
       Object.values(this.webForm.controls).forEach(control => control.markAsTouched());
